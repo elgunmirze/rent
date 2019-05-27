@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Employee</title>
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/equipment.js"></script>
+    
+</head>
+<body ng-app="myModule">
+    <form id="form1" runat="server">
+        <div class="container" ng-controller="orderController">
+            <h3 class="text-center">Online construction equipment rental</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Search:</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-search"></i></span>
+                            </div>
+                            <input type="text" class="form-control " placeholder="Search employees" ng-model="searchText" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <table class="table table-bordered table-striped">
+                <thead class="bg-dark text-white text-uppercase">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Surname</th>
+                        <th>Rent Days</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="emplopye in employees|filter:searchText">
+                        <td>{{emplopye.Id}}</td>
+                        <td>{{emplopye.Name}}</td>
+                        <td>{{emplopye.Surname}}</td>
+                        <td><input class="input-group-text" type="text" width="15" placeholder="rent days" ng-model="emplopye.rentDays" /></td>
+                        <td><input class="btn btn-primary" type="button" value="Add to cart" ng-click="addToCart(emplopye.Id,emplopye.rentDays)" /></td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+            <input class="btn btn-dark" type="button" width="120" value="Checkout" />
+            <br />
+            <br />
+            <br />
+            <br />
+            <div>
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Surname</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="cart in cartList|filter:searchText">
+                            <td>{{cart.Id}}</td>
+                            <td>{{cart.Name}}</td>
+                            <td>{{cart.Surname}}</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </form>
+</body>
+</html> 

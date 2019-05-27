@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1E676C7F-158B-44BC-8390-53AD080847A1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Equipment.Rental.Services</RootNamespace>
+    <AssemblyName>Equipment.Rental.Services</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=8.1.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.8.1.0\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Actions\Regular.cs" />
+    <Compile Include="Actions\Specialized.cs" />
+    <Compile Include="Actions\Heavy.cs" />
+    <Compile Include="Calculations\IInvoiceCalculator.cs" />
+    <Compile Include="Calculations\InvoiceCalculator.cs" />
+    <Compile Include="Calculations\IOrderCalculator.cs" />
+    <Compile Include="Calculations\OrderCalculator.cs" />
+    <Compile Include="IActionCalculator.cs" />
+    <Compile Include="IInventoryService.cs" />
+    <Compile Include="InventoryService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Equipment.Rental.Common\Equipment.Rental.Common.csproj">
+      <Project>{BAB80E5E-BB2D-4228-8FC3-7DDD33043419}</Project>
+      <Name>Equipment.Rental.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Equipment.Rental.Infrastructure\Equipment.Rental.Infrastructure.csproj">
+      <Project>{10264C07-15BD-4CF4-9BBC-42E350D7B132}</Project>
+      <Name>Equipment.Rental.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Equipment.Rental.Models\Equipment.Rental.Models.csproj">
+      <Project>{3046822F-E9D7-4D72-9D22-D7507507256A}</Project>
+      <Name>Equipment.Rental.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
