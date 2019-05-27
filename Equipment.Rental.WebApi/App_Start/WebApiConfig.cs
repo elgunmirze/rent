@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Equipment.Rental.Models.Entities;
 using Equipment.Rental.Services;
 using System;
 using System.Collections.Generic;

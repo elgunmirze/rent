@@ -28,12 +28,9 @@ namespace Equipment.Rental.WebApi.Controllers
         [HttpGet]
         public async Task<List<Models.Equipment>> GetEquipments()
         {
-            using (var scope = IoC.BeginLifetimeScope())
-            {
-                var inventoryService = scope.Resolve<IInventoryService>();
-                var result = await inventoryService.GetEquipmentsAsync();
-                return result;
-            }
+            var inventoryService = Scope.Resolve<IInventoryService>();
+            var result = await inventoryService.GetEquipmentsAsync();
+            return result;
         }
     }
 }

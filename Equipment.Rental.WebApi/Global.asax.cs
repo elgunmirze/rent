@@ -17,6 +17,7 @@ namespace Equipment.Rental.WebApi
             GlobalConfiguration.Configure(WebApiConfig.Register);
             GlobalConfiguration.Configure(IocConfig.Register);
             GlobalConfiguration.Configure(JsonFormatterConfig.Register);
+            GlobalConfiguration.Configure(AutoMapperConfig.Register);
         }
     }
 }

@@ -33,16 +33,9 @@ namespace Equipment.Rental.Services
                 cache.Set(ALL_EQUIPMENTS_CACHE, inventories, policy);
             }
 
-            var config = new MapperConfiguration(cfg => {
+            var result = Mapper.Map<List<Models.Equipment>>(inventories);
 
-                cfg.CreateMap<List<Models.Equipment>,  List<EquipmentDto>> ();
-
-            });
-
-            IMapper iMapper = config.CreateMapper();
-
-            var mappedInventories = iMapper.Map<List<EquipmentDto>, List<Models.Equipment>>(inventories);
-            return mappedInventories;
+            return result;
         }
     }
 }
