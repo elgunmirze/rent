@@ -1,4 +1,5 @@
 ﻿using Equipment.Rental.Models.Entities;
+using Equipment.Rental.Models.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace Equipment.Rental.WebApi.App_Start
         {
             AutoMapper.Mapper.Initialize(cfg => {
                 cfg.CreateMap<List<Models.Equipment>, List<EquipmentDto>>();
+                cfg.CreateMap<List<Models.RentEquipment>, List<RentEquipmentRequest>>();
             });
         }
     }

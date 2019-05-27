@@ -52,7 +52,9 @@
     <Compile Include="Calculations\InvoiceCalculator.cs" />
     <Compile Include="Calculations\IOrderCalculator.cs" />
     <Compile Include="Calculations\OrderCalculator.cs" />
+    <Compile Include="CartService.cs" />
     <Compile Include="IActionCalculator.cs" />
+    <Compile Include="ICartService.cs" />
     <Compile Include="IInventoryService.cs" />
     <Compile Include="InventoryService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

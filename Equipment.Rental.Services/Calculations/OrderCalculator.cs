@@ -9,23 +9,17 @@ using System.Threading.Tasks;
 
 namespace Equipment.Rental.Services.Calculations
 {
-    public class OrderCalculator
+    public class OrderCalculator : IOrderCalculator
     {
         public List<Order> _invoices { get; set; }
-        private IList<IActionCalculator<Order>> _actions = new List<IActionCalculator<Order>>();
+        private static IList<IActionCalculator<Order>> _actions = new List<IActionCalculator<Order>>();
         private readonly IInventoryRepository _inventoryRepository;
         public OrderCalculator(IInventoryRepository inventoryRepository)
         {
             _inventoryRepository = inventoryRepository;
-            InitActions();
+            Initialize();
         }
 
-        private void InitActions()
-        {
-            _actions.Add(new Heavy());
-            _actions.Add(new Regular());
-            _actions.Add(new Specialized());
-        }
         public void Calculate(IEnumerable<RentEquipment> rentEquipments)
         {
             var fees = _inventoryRepository.GetEquipmentFees();
@@ -44,6 +38,13 @@ namespace Equipment.Rental.Services.Calculations
                     }
                 }
             }
+        }
+
+        private static void Initialize()
+        {
+            _actions.Add(new Heavy());
+            _actions.Add(new Regular());
+            _actions.Add(new Specialized());
         }
     }
 }

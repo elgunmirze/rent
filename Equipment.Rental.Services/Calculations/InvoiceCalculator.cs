@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 
 namespace Equipment.Rental.Services.Calculations
 {
-    public class InvoiceCalculator : IInvoiceCalculator<Invoice>
+    public class InvoiceCalculator : IInvoiceCalculator
     {
-        public Invoice PrepareInvoice(List<Order> orders)
+        public Invoice Prepare(List<Order> orders)
         {
             if (!orders.Any()) return new Invoice();
 
             var invoice = new Invoice
             {
-                Order = orders,
+                Orders = orders,
                 Points = PointsCalculator(orders),
                 TotalAmount = orders.Sum(o => o.Amount)
             };

@@ -8,12 +8,36 @@
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/angular.min.js"></script>
     <script src="~/Scripts/equipment.js"></script>
-    
+
 </head>
 <body ng-app="myModule">
     <form id="form1" runat="server">
         <div class="container" ng-controller="orderController">
             <h3 class="text-center">Online construction equipment rental</h3>
+            <div style="float: right;font-size:small">
+                <b style="color:red">Cart List</b>
+                <table class="table-info">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Rent Days</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="cart in cartList|filter:searchText">
+                            <td>{{cart.id}}</td>
+                            <td>{{cart.name}}</td>
+                            <td>{{cart.type}}</td>
+                            <td>{{cart.rentDays}}</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+            <br />
+            <br />
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
@@ -27,52 +51,31 @@
                     </div>
                 </div>
             </div>
+
             <table class="table table-bordered table-striped">
                 <thead class="bg-dark text-white text-uppercase">
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
-                        <th>Surname</th>
+                        <th>Type</th>
                         <th>Rent Days</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="emplopye in employees|filter:searchText">
-                        <td>{{emplopye.Id}}</td>
-                        <td>{{emplopye.Name}}</td>
-                        <td>{{emplopye.Surname}}</td>
-                        <td><input class="input-group-text" type="text" width="15" placeholder="rent days" ng-model="emplopye.rentDays" /></td>
-                        <td><input class="btn btn-primary" type="button" value="Add to cart" ng-click="addToCart(emplopye.Id,emplopye.rentDays)" /></td>
+                    <tr ng-repeat="equipment in equipments|filter:searchText">
+                        <td>{{equipment.id}}</td>
+                        <td>{{equipment.name}}</td>
+                        <td>{{equipment.type}}</td>
+                        <td><input class="input-group-text" type="text" width="15" placeholder="rent days" ng-model="equipment.rentDays" /></td>
+                        <td><input class="btn btn-primary" type="button" value="Add to cart" ng-click="addToCart(equipment.id, equipment.rentDays, 'mycompname')" /></td>
                     </tr>
                 </tbody>
 
             </table>
 
-            <input class="btn btn-dark" type="button" width="120" value="Checkout" />
-            <br />
-            <br />
-            <br />
-            <br />
-            <div>
-                <table border="1">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Surname</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="cart in cartList|filter:searchText">
-                            <td>{{cart.Id}}</td>
-                            <td>{{cart.Name}}</td>
-                            <td>{{cart.Surname}}</td>
-                        </tr>
-                    </tbody>
+            <input class="btn btn-dark" type="button" width="120" value="Checkout" ng-click="prepareInvoice('mycompname')" />
 
-                </table>
-            </div>
         </div>
     </form>
 </body>

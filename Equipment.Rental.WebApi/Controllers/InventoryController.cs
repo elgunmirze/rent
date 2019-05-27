@@ -13,12 +13,13 @@ using System.Web.Http.Results;
 
 namespace Equipment.Rental.WebApi.Controllers
 {
+    [RoutePrefix("api")]
     public class InventoryController : ApiController
     {
-        protected ILifetimeScope Scope { get; }
-        public InventoryController(ILifetimeScope scope)
+        private readonly IInventoryService _inventoryService;
+        public InventoryController(IInventoryService inventoryService)
         {
-            Scope = scope;
+            _inventoryService = inventoryService;
         }
 
         /// <summary>
@@ -26,10 +27,10 @@ namespace Equipment.Rental.WebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [Route("equipments")]
         public async Task<List<Models.Equipment>> GetEquipments()
         {
-            var inventoryService = Scope.Resolve<IInventoryService>();
-            var result = await inventoryService.GetEquipmentsAsync();
+            var result = await _inventoryService.GetEquipmentsAsync();
             return result;
         }
     }

@@ -1,5 +1,8 @@
-﻿using Equipment.Rental.Infrastructure.Repository;
+﻿using Autofac;
+using AutoMapper;
+using Equipment.Rental.Infrastructure.Repository;
 using Equipment.Rental.Models;
+using Equipment.Rental.Models.Models;
 using Equipment.Rental.Services.Calculations;
 using System;
 using System.Collections.Generic;
@@ -10,13 +13,29 @@ using System.Web.Http;
 
 namespace Equipment.Rental.WebApi.Controllers
 {
+    [RoutePrefix("api")]
     public class PriceController : ApiController
     {
-        [HttpPost]
-        public void Calculate([FromBody] List<RentEquipment> rentEquipments)
+        private readonly IOrderCalculator _orderCalculator;
+        private readonly IInvoiceCalculator _invoiceCalculator;
+        public PriceController(IInvoiceCalculator invoiceCalculator, IOrderCalculator orderCalculator)
         {
-            var ca = new OrderCalculator(new InventoryRepository());
-            ca.Calculate(rentEquipments);
+            _invoiceCalculator = invoiceCalculator;
+            _orderCalculator = orderCalculator;
+        }
+
+
+        [HttpPost]
+        [Route("invoice")]
+        public Invoice Calculate([FromBody] List<RentEquipmentRequest> data)
+        {
+            var request = Mapper.Map<List<RentEquipment>>(data);
+
+            _orderCalculator.Calculate(request);
+
+            var result = _invoiceCalculator.Prepare(_orderCalculator._invoices);
+
+            return result;
         }
     }
 }

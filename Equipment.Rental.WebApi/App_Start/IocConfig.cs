@@ -1,7 +1,9 @@
 ﻿using Autofac;
 using Autofac.Integration.WebApi;
 using Equipment.Rental.Infrastructure.Repository;
+using Equipment.Rental.Models.Models;
 using Equipment.Rental.Services;
+using Equipment.Rental.Services.Calculations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,6 +39,9 @@ namespace Equipment.Rental.WebApi.App_Start
 
                 builder.RegisterType<InventoryRepository>().As<IInventoryRepository>().InstancePerLifetimeScope();
                 builder.RegisterType<InventoryService>().As<IInventoryService>().InstancePerLifetimeScope();
+                builder.RegisterType<CartService>().As<ICartService>().InstancePerLifetimeScope();
+                builder.RegisterType<OrderCalculator>().As<IOrderCalculator>().InstancePerLifetimeScope();
+                builder.RegisterType<InvoiceCalculator>().As<IInvoiceCalculator>().InstancePerLifetimeScope();
 
                 builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
                 builder.RegisterWebApiFilterProvider(config);

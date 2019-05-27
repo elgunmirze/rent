@@ -14,53 +14,27 @@ namespace Equipment.Rental.App.Controllers
             return View();
         }
 
-        [HttpGet]
-        public JsonResult GetAllEquipments()
-        {
-            var list  = new List<Models.Equipment> {
-                new Models.Equipment{
-                    Id = 1,
-                    Name = "test",
-                    Surname  = "test"
-
-                },
-                new Models.Equipment{
-                    Id = 2,
-                    Name = "elgun",
-                    Surname  = "elgun"
-
-                },
-                new Models.Equipment{
-                    Id = 3,
-                    Name = "mirza",
-                    Surname  = "mirza"
-
-                }
-            };
-            return Json(list,"application/json",Encoding.UTF8,JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpPost]
-        public JsonResult AddToCart(int id,int rentDays)
-        {
-            var list = new List<Models.Equipment> {
-                new Models.Equipment{
-                    Id = 1,
-                    Name = "test",
-                    Surname  = "test"
-                },
-                new Models.Equipment{
-                    Id = 2,
-                    Name = "elgun",
-                    Surname  = "elgun"
-                },
-                new Models.Equipment{
-                    Id = 3,
-                    Name = "mirza",
-                    Surname  = "mirza"
-                }
-            };
-            return Json(list, "application/json", Encoding.UTF8, JsonRequestBehavior.AllowGet);
-        }
+        //[HttpPost]
+        //public JsonResult AddToCart(int id,int rentDays)
+        //{
+        //    var list = new List<Models.Equipment> {
+        //        new Models.Equipment{
+        //            Id = 1,
+        //            Name = "test",
+        //            Surname  = "test"
+        //        },
+        //        new Models.Equipment{
+        //            Id = 2,
+        //            Name = "elgun",
+        //            Surname  = "elgun"
+        //        },
+        //        new Models.Equipment{
+        //            Id = 3,
+        //            Name = "mirza",
+        //            Surname  = "mirza"
+        //        }
+        //    };
+        //    return Json(list, "application/json", Encoding.UTF8, JsonRequestBehavior.AllowGet);
+        //}
     }
 }
