@@ -8,6 +8,6 @@ namespace Equipment.Rental.Services
 {
     public interface IInventoryService
     {
-        Task<IEnumerable<Models.Equipment>> GetEquipmentsAsync();
+        Task<List<Models.Equipment>> GetEquipmentsAsync();
     }
 }

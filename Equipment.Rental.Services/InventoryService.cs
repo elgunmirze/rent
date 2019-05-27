@@ -8,7 +8,7 @@ using AutoMapper;
 
 namespace Equipment.Rental.Services
 {
-    public class InventoryService
+    public class InventoryService : IInventoryService
     {
         private const int CACHE_TIME_IN_MINUTES = 60;
         private const string ALL_EQUIPMENTS_CACHE = "11717d90-6uuf-4d5d-bc95-b010fe13c9c0";
@@ -18,10 +18,10 @@ namespace Equipment.Rental.Services
         {
             _inventoryRepository = inventoryRepository;
         }
-        public async Task<IEnumerable<Models.Equipment>> GetEquipmentsAsync()
+        public async Task<List<Models.Equipment>> GetEquipmentsAsync()
         {
             ObjectCache cache = MemoryCache.Default;
-            var inventories = (IEnumerable<EquipmentDto>)cache[ALL_EQUIPMENTS_CACHE];
+            var inventories = (List<EquipmentDto>)cache[ALL_EQUIPMENTS_CACHE];
 
             if (inventories == null)
             {
@@ -33,7 +33,15 @@ namespace Equipment.Rental.Services
                 cache.Set(ALL_EQUIPMENTS_CACHE, inventories, policy);
             }
 
-            var mappedInventories = Mapper.Map<IEnumerable<EquipmentDto>, IEnumerable<Models.Equipment>>(inventories);
+            var config = new MapperConfiguration(cfg => {
+
+                cfg.CreateMap<List<Models.Equipment>,  List<EquipmentDto>> ();
+
+            });
+
+            IMapper iMapper = config.CreateMapper();
+
+            var mappedInventories = iMapper.Map<List<EquipmentDto>, List<Models.Equipment>>(inventories);
             return mappedInventories;
         }
     }

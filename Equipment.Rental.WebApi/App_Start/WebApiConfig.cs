@@ -1,7 +1,12 @@
-﻿using System;
+﻿using Autofac;
+using Equipment.Rental.Services;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Web.Http;
+using System.Web.Http.Dependencies;
 
 namespace Equipment.Rental.WebApi
 {
@@ -9,8 +14,6 @@ namespace Equipment.Rental.WebApi
     {
         public static void Register(HttpConfiguration config)
         {
-            // Web API configuration and services
-
             // Web API routes
             config.MapHttpAttributeRoutes();
 

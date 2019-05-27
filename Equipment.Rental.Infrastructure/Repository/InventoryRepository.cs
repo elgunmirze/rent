@@ -10,7 +10,7 @@ namespace Equipment.Rental.Infrastructure.Repository
 {
     public class InventoryRepository : IInventoryRepository
     {
-        public async Task<IEnumerable<EquipmentDto>> GetAllEquipmentsAsync()
+        public async Task<List<EquipmentDto>> GetAllEquipmentsAsync()
         {
             var equipments = await Task.FromResult(new List<EquipmentDto>
             {

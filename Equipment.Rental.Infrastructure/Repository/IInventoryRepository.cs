@@ -10,7 +10,7 @@ namespace Equipment.Rental.Infrastructure.Repository
 {
     public interface IInventoryRepository
     {
-        Task<IEnumerable<EquipmentDto>> GetAllEquipmentsAsync();
+        Task<List<EquipmentDto>> GetAllEquipmentsAsync();
         Dictionary<FeeTypes, decimal> GetEquipmentFees();
     }
 }
