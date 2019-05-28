@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Equipment.Rental.Services.Actions
 {
-    public class Heavy : IActionCalculator<Order>
+    public class Heavy : IActionCalculator
     {
         public Order Calculate(RentEquipment rentEquipment, Dictionary<FeeTypes, decimal> fees)
         {

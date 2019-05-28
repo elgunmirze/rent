@@ -68,5 +68,12 @@ namespace Equipment.Rental.Services
 
             return cartList;
         }
+
+        public bool ClearCartList(string machineHashId)
+        {
+            var cache = MemoryCache.Default;
+            cache.Remove(machineHashId);
+            return true;
+        }
     }
 }

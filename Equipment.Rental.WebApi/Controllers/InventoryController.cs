@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Equipment.Rental.Models.Entities;
 using Equipment.Rental.Services;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace Equipment.Rental.WebApi.Controllers
     [RoutePrefix("api")]
     public class InventoryController : ApiController
     {
+        protected static readonly ILogger Logger = LogManager.GetLogger("InventoryController");
         private readonly IInventoryService _inventoryService;
         public InventoryController(IInventoryService inventoryService)
         {
@@ -30,8 +32,17 @@ namespace Equipment.Rental.WebApi.Controllers
         [Route("equipments")]
         public async Task<List<Models.Equipment>> GetEquipments()
         {
-            var result = await _inventoryService.GetEquipmentsAsync();
-            return result;
+            try
+            {
+                Logger.Info("Getting equipments");
+                var result = await _inventoryService.GetEquipmentsAsync();
+                return result;
+            }
+            catch(Exception ex)
+            {
+                Logger.Error(ex);
+                throw;
+            }
         }
     }
 }

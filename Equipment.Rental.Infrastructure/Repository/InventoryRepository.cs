@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Equipment.Rental.Infrastructure.Repository
 {
+    //Let's assume that we will use here database
     public class InventoryRepository : IInventoryRepository
     {
         public async Task<List<EquipmentDto>> GetAllEquipmentsAsync()

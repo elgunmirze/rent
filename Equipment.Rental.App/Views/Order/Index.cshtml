@@ -2,7 +2,7 @@
 
 <html>
 <head runat="server">
-    <title>Employee</title>
+    <title>Online construction equipment rental</title>
     <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <script src="~/Scripts/bootstrap.min.js"></script>
@@ -16,7 +16,7 @@
             <h3 class="text-center">Online construction equipment rental</h3>
             <div style="float: right;font-size:small">
                 <b style="color:red">Cart List</b>
-                <table class="table-info">
+                <table class="table-bordered">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -46,7 +46,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-search"></i></span>
                             </div>
-                            <input type="text" class="form-control " placeholder="Search employees" ng-model="searchText" />
+                            <input type="text" class="form-control " placeholder="Search equipments" ng-model="searchText" />
                         </div>
                     </div>
                 </div>
@@ -74,7 +74,7 @@
 
             </table>
 
-            <input class="btn btn-dark" type="button" width="120" value="Checkout" ng-click="prepareInvoice('mycompname')" />
+            <input class="btn btn-dark" type="button" width="120" value="Generate Invoice" ng-click="prepareInvoice('mycompname')" />
 
         </div>
     </form>

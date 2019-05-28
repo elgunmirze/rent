@@ -3,6 +3,7 @@ using Equipment.Rental.Models.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Caching;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,7 +21,7 @@ namespace Equipment.Rental.Services.Calculations
                 Points = PointsCalculator(orders),
                 TotalAmount = orders.Sum(o => o.Amount)
             };
-
+            
             return invoice;
         }
 

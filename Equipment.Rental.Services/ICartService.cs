@@ -1,8 +1,5 @@
 ﻿using Equipment.Rental.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Equipment.Rental.Services
@@ -11,5 +8,6 @@ namespace Equipment.Rental.Services
     {
         Task<bool> AddEquipmentsToCartAsync(int id, int rentDays, string machineHashId);
         List<RentEquipment> GetCartList(string machineHashId);
+        bool ClearCartList(string machineHashId);
     }
 }

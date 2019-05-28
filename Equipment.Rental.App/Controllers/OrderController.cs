@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -14,27 +15,9 @@ namespace Equipment.Rental.App.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public JsonResult AddToCart(int id,int rentDays)
-        //{
-        //    var list = new List<Models.Equipment> {
-        //        new Models.Equipment{
-        //            Id = 1,
-        //            Name = "test",
-        //            Surname  = "test"
-        //        },
-        //        new Models.Equipment{
-        //            Id = 2,
-        //            Name = "elgun",
-        //            Surname  = "elgun"
-        //        },
-        //        new Models.Equipment{
-        //            Id = 3,
-        //            Name = "mirza",
-        //            Surname  = "mirza"
-        //        }
-        //    };
-        //    return Json(list, "application/json", Encoding.UTF8, JsonRequestBehavior.AllowGet);
-        //}
+        public string GetApiUrl()
+        {
+            return ConfigurationManager.AppSettings["ApiUrl"].ToString();
+        }
     }
 }

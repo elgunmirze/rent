@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Equipment.Rental.Services.Actions
 {
-    public class Specialized : IActionCalculator<Order>
+    public class Specialized : IActionCalculator
     {
         public Order Calculate(RentEquipment rentEquipment, Dictionary<FeeTypes, decimal> fees)
         {

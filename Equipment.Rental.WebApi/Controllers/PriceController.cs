@@ -3,7 +3,9 @@ using AutoMapper;
 using Equipment.Rental.Infrastructure.Repository;
 using Equipment.Rental.Models;
 using Equipment.Rental.Models.Models;
+using Equipment.Rental.Services;
 using Equipment.Rental.Services.Calculations;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,10 +20,16 @@ namespace Equipment.Rental.WebApi.Controllers
     {
         private readonly IOrderCalculator _orderCalculator;
         private readonly IInvoiceCalculator _invoiceCalculator;
-        public PriceController(IInvoiceCalculator invoiceCalculator, IOrderCalculator orderCalculator)
+        private readonly ICartService  _cartService;
+        protected static readonly ILogger Logger = LogManager.GetLogger("PriceController");
+
+        public PriceController(IInvoiceCalculator invoiceCalculator, 
+            IOrderCalculator orderCalculator,
+            ICartService cartService)
         {
             _invoiceCalculator = invoiceCalculator;
             _orderCalculator = orderCalculator;
+            _cartService = cartService;
         }
 
 
@@ -29,13 +37,44 @@ namespace Equipment.Rental.WebApi.Controllers
         [Route("invoice")]
         public Invoice Calculate([FromBody] List<RentEquipmentRequest> data)
         {
-            var request = Mapper.Map<List<RentEquipment>>(data);
+            try
+            {
+                if (data == null)
+                    throw new ArgumentNullException("There is no rent equipments 1");
 
-            _orderCalculator.Calculate(request);
+                Logger.Info("Invoice calulation");
 
-            var result = _invoiceCalculator.Prepare(_orderCalculator._invoices);
+                var request = Mapper.Map<List<RentEquipment>>(data);
 
-            return result;
+                _orderCalculator.Calculate(request);
+
+                var result = _invoiceCalculator.Prepare(_orderCalculator._invoices);
+
+                return result;
+            }
+            catch(Exception ex)
+            {
+                Logger.Error(ex);
+                throw;
+            }
+        }
+
+        [HttpPost]
+        [Route("emptycartlist")]
+        public bool ClearCache([FromBody]string machineHashId)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(machineHashId))
+                    throw new ArgumentNullException("There is no machine hash id !");
+
+                return _cartService.ClearCartList(machineHashId);
+            }
+            catch(Exception ex)
+            {
+                Logger.Error(ex);
+                throw;
+            }
         }
     }
 }

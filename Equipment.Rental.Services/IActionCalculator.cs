@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace Equipment.Rental.Services
 {
-    public interface IActionCalculator<T>
+    public interface IActionCalculator
     {
-        T Calculate(RentEquipment rentEquipment, Dictionary<FeeTypes, decimal> fees);
+        Order Calculate(RentEquipment rentEquipment, Dictionary<FeeTypes, decimal> fees);
     }
 }
