@@ -33,6 +33,11 @@ namespace Equipment.Rental.WebApi.Controllers
         }
 
 
+        /// <summary>
+        /// Calculating Invoices
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("invoice")]
         public Invoice Calculate([FromBody] List<RentEquipmentRequest> data)
@@ -59,6 +64,11 @@ namespace Equipment.Rental.WebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Clearing the cart list
+        /// </summary>
+        /// <param name="machineHashId"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("emptycartlist")]
         public bool ClearCache([FromBody]string machineHashId)
