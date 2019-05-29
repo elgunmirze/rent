@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Caching;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Equipment.Rental.Services
@@ -11,7 +10,6 @@ namespace Equipment.Rental.Services
     public class CartService : ICartService
     {
         private const int CACHE_TIME_IN_MINUTES = 5;
-
         public readonly IInventoryService _inventoryService;
         public CartService(IInventoryService inventoryService)
         {
