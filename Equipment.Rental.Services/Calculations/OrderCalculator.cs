@@ -23,6 +23,8 @@ namespace Equipment.Rental.Services.Calculations
 
         public void Calculate(IEnumerable<RentEquipment> rentEquipments)
         {
+            if (rentEquipments == null) throw new ArgumentNullException("There is no rent equipments !");
+
             var fees = _inventoryRepository.GetEquipmentFees();
 
             _invoices = new List<Order>();
