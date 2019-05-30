@@ -1,4 +1,4 @@
-# rent
+# Equipment Rental Application
 Equipment Rental Application
 
 There two main parts of the application Frontend and Web Api
@@ -13,7 +13,7 @@ Technology Stack
 Project name is "Equipment.Rental.App"
 For running the project you should change address inside the web config where you will host the "Equipment.Rental.WebApi" project.
     <add key="ApiUrl" value="http://127.0.0.1"/>
-    
+    http://localhost/order/index
 **Backend**
 
 For backend I used rest full api which is called Equipment.Rental.WebApi. You need to host it in somewhere in IIS.
