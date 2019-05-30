@@ -4,9 +4,12 @@ Equipment Rental Application
 There two main parts of the application Frontend and Web Api
 
 **Frontend**
+
 Technology Stack
+
 - MVC
 - Angular
+
 Project name is "Equipment.Rental.App"
 For running the project you should change address inside the web config where you will host the "Equipment.Rental.WebApi" project.
     <add key="ApiUrl" value="http://127.0.0.1"/>
