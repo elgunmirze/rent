@@ -19,8 +19,13 @@ For running the project you should change address inside the web config where yo
 For backend I used rest full api which is called Equipment.Rental.WebApi. You need to host it in somewhere in IIS.
 
 Used frameworks
+
 NLog => for logging
+
 Autofac => IoC / Dependency injection
+
 XUnit => For unit tests (I added several tests to show the my style, in fact should be covered)
+
 NSubstitue => For mocking
+
 Caching => For caching I used device memory but we can use Redis cache as well. I didn't use it for now because it is not fast you to test
